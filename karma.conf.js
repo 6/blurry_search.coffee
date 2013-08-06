@@ -11,7 +11,8 @@ files = [
   JASMINE,
   JASMINE_ADAPTER,
   'build/blurry_search.js',
-  'test/support/*.js',
+  'test/vendor/**/*.js',
+  'test/javascripts/support/**/*.js',
   'test/javascripts/shared_examples/*.js',
   'test/javascripts/**/*[Ss]pec.js'
 ];
