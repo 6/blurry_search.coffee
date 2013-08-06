@@ -10,6 +10,7 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
+  'node_modules/xregexp/xregexp-all.js',
   'build/blurry_search.js',
   'test/vendor/**/*.js',
   'test/javascripts/support/**/*.js',
