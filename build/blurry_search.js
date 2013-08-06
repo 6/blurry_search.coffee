@@ -12,9 +12,21 @@
     }
 
     BlurrySearch.prototype.search = function(str) {
+      var startIndex, text;
       if (!StringHelper.isString(str)) {
         throw new Error("Must specify search string");
       }
+      text = new String(this.text).toLocaleLowerCase();
+      str = str.toLocaleLowerCase();
+      startIndex = text.indexOf(str);
+      if (startIndex === -1) {
+        return null;
+      }
+      return {
+        startIndex: startIndex,
+        endIndex: startIndex + str.length - 1,
+        similarity: StringHelper.similarity(text, str)
+      };
     };
 
     return BlurrySearch;
@@ -48,8 +60,12 @@
       return diffs.concat(charsB);
     };
 
+    StringHelper.similarity = function(stringA, stringB) {
+      return 1 - (this.characterDifferences(stringA, stringB).length / (stringA + stringB).length);
+    };
+
     StringHelper.percentDifference = function(stringA, stringB) {
-      return this.characterDifferences(stringA, stringB).length / (stringA + stringB).length * 100;
+      return (1 - this.similarity(stringA, stringB)) * 100;
     };
 
     return StringHelper;

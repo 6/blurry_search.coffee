@@ -31,6 +31,23 @@ describe "BlurrySearch", ->
       it "does not throw an error", =>
         @subject.search("...")
 
+    context "when there is no match", =>
+      it "returns a falsy value", =>
+        subject = new BlurrySearch("hello")
+        expect(subject.search("hi")).toBeFalsy()
+
+    context "when the search string is longer than text", =>
+      it "returns a falsy value", =>
+        subject = new BlurrySearch("yo")
+        expect(subject.search("yoyo")).toBeFalsy()
+
+    context "with variable-case strings", =>
+      it "produces a match", =>
+        subject = new BlurrySearch("sup Hello WOrld yo!!")
+        result = subject.search("hellO WORLD")
+        expect(result.startIndex).toEqual(4)
+        expect(result.endIndex).toEqual(14)
+
 describe "StringHelper", ->
   beforeEach =>
     @subject = BlurrySearch.StringHelper
