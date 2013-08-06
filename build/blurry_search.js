@@ -68,6 +68,10 @@
       return (1 - this.similarity(stringA, stringB)) * 100;
     };
 
+    StringHelper.removeNonWordCharacters = function(str) {
+      return XRegExp.replace(str, XRegExp('[^0-9\\p{L}\\p{N}]'), "", 'all');
+    };
+
     return StringHelper;
 
   })();

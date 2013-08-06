@@ -46,4 +46,7 @@ class StringHelper
   @percentDifference: (stringA, stringB) ->
     (1 - @similarity(stringA, stringB)) * 100
 
+  @removeNonWordCharacters: (str) ->
+    XRegExp.replace(str, XRegExp('[^0-9\\p{L}\\p{N}]'), "", 'all')
+
 @BlurrySearch.StringHelper = StringHelper

@@ -77,3 +77,12 @@ describe "StringHelper", ->
     it "returns the percent difference between to strings", =>
       percent = @subject.percentDifference("hello world", "hello hoo world!")
       expect(Math.round(percent)).toEqual(19)
+
+  describe ".removeNonWordCharacters", =>
+    it "removes punctuation and spaces", =>
+      result = @subject.removeNonWordCharacters("yo! What's UP?? 1234")
+      expect(result).toEqual("yoWhatsUP1234")
+
+    it "works with unicode characters", =>
+      result = @subject.removeNonWordCharacters("★あっ！〜モぉ、どうしよう？（笑）１２３")
+      expect(result).toEqual("あっモぉどうしよう笑１２３")
