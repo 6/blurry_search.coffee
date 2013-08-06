@@ -1,0 +1,23 @@
+{
+  "name": "blurry_search.coffee",
+  "title": "blurry_search.coffee",
+  "description": "",
+  "version": "0.0.1",
+  "homepage": "https://github.com/6/blurry_search.coffee",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/6/blurry_search.coffee.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-coffee": "~0.7.0",
+    "coffee-script": "~1.6.3",
+    "karma": "~0.8",
+    "grunt-cli": "~0.1.9"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+  }
+}
