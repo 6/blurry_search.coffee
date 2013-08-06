@@ -12,11 +12,21 @@ module.exports = (grunt) ->
         dest: 'test/javascripts/'
         ext: '.js'
 
+    uglify:
+      options:
+        mangle: true,
+        compress: true,
+        report: 'gzip'
+      dist:
+        files:
+          'build/blurry_search.min.js': ['build/blurry_search.js']
+
     watch:
       files: ['**/*.coffee']
-      tasks: ['coffee']
+      tasks: ['coffee', 'uglify']
 
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-contrib-uglify')
 
   grunt.registerTask('default', ['coffee', 'watch'])

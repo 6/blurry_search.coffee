@@ -10,7 +10,7 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  'build/*.js',
+  'build/blurry_search.js',
   'test/support/*.js',
   'test/javascripts/shared_examples/*.js',
   'test/javascripts/**/*[Ss]pec.js'
