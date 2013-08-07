@@ -24,7 +24,7 @@ Returns:
 ---
 Access to matching indices in original text:
 ```coffeescript
-b = new BlurrySearch("A meek hobbit of The Shire and eight companions set out on a journey")
+b = new BlurrySearch("A meek hobbit of The Shire and eight companions set out")
 b.search("Hobbit! Of the ~shire")
 ```
 
