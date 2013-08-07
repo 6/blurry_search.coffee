@@ -45,8 +45,17 @@ describe "BlurrySearch", ->
       it "produces a match", =>
         subject = new BlurrySearch("sup Hello WOrld yo!!")
         result = subject.search("hellO WORLD")
+        expect(result).toBeTruthy()
         expect(result.startIndex).toEqual(4)
         expect(result.endIndex).toEqual(14)
+
+    context "with variable non-letter characters", =>
+      it "produces a match", =>
+        subject = new BlurrySearch(" row, row your*~boat!!!")
+        result = subject.search("RowYour boat??")
+        expect(result).toBeTruthy()
+        expect(result.startIndex).toEqual(6)
+        expect(result.endIndex).toEqual(19)
 
 describe "StringHelper", ->
   beforeEach =>

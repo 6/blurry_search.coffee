@@ -12,19 +12,40 @@
     }
 
     BlurrySearch.prototype.search = function(str) {
-      var startIndex, text;
+      var endIndex, endIndexFinal, i, removed, startIndex, startIndexFinal, strResult, text, textResult;
       if (!StringHelper.isString(str)) {
         throw new Error("Must specify search string");
       }
       text = new String(this.text).toLocaleLowerCase();
       str = str.toLocaleLowerCase();
-      startIndex = text.indexOf(str);
+      textResult = StringHelper.removeNonWordCharacters(text);
+      strResult = StringHelper.removeNonWordCharacters(str);
+      startIndex = textResult.str.indexOf(strResult.str);
       if (startIndex === -1) {
         return null;
       }
+      endIndex = startIndex + strResult.str.length - 1;
+      startIndexFinal = null;
+      endIndexFinal = null;
+      i = 0;
+      while (textResult.removed.length > 0) {
+        removed = textResult.removed.shift();
+        if (removed.index > startIndex + i) {
+          if (startIndexFinal == null) {
+            startIndexFinal = startIndex + i;
+          }
+        }
+        if (removed.index > endIndex + i) {
+          if (endIndexFinal == null) {
+            endIndexFinal = endIndex + i;
+          }
+          break;
+        }
+        i += 1;
+      }
       return {
-        startIndex: startIndex,
-        endIndex: startIndex + str.length - 1,
+        startIndex: startIndexFinal,
+        endIndex: endIndexFinal,
         similarity: StringHelper.similarity(text, str)
       };
     };

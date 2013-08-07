@@ -14,11 +14,29 @@ class @BlurrySearch
     text = new String(@text).toLocaleLowerCase()
     str = str.toLocaleLowerCase()
 
-    startIndex = text.indexOf(str)
+    textResult = StringHelper.removeNonWordCharacters(text)
+    strResult = StringHelper.removeNonWordCharacters(str)
+
+    startIndex = textResult.str.indexOf(strResult.str)
     return null if startIndex == -1
+
+    # Reconstruct indices based on `removed`
+    endIndex = startIndex + strResult.str.length - 1
+    startIndexFinal = null
+    endIndexFinal = null
+    i = 0
+    while textResult.removed.length > 0
+      removed = textResult.removed.shift()
+      if removed.index > startIndex + i
+        startIndexFinal ?= startIndex + i
+      if removed.index > endIndex + i
+        endIndexFinal ?= endIndex + i
+        break
+      i += 1
+
     {
-      startIndex: startIndex
-      endIndex: startIndex + str.length - 1
+      startIndex: startIndexFinal
+      endIndex: endIndexFinal
       similarity: StringHelper.similarity(text, str)
     }
 
