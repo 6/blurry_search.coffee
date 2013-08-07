@@ -11,6 +11,17 @@ Returns:
 "Harry Potter has <em class='highlight'>no idea how famous</em> he is."
 ```
 ---
+Access matching indices in original text with `search`:
+```coffeescript
+b = new BlurrySearch("A meek hobbit of The Shire and eight companions set out")
+b.search("Hobbit! Of the ~shire")
+```
+
+Returns match indices and match confidence range from 0 (less confident) to 1 (more confident):
+```coffeescript
+{ startIndex: 7, endIndex: 25, confidence: 0.95 }
+```
+---
 Works with searching unicode:
 ```coffeescript
 b = new BlurrySearch("★あっ！〜モぉ、どうしよう？（笑）")
@@ -20,15 +31,4 @@ b.tag("ど〜うしよう‥", "span")
 Returns:
 ```coffeescript
 "★あっ！〜モぉ、<span>どうしよう</span>？（笑）"
-```
----
-Access to matching indices in original text:
-```coffeescript
-b = new BlurrySearch("A meek hobbit of The Shire and eight companions set out")
-b.search("Hobbit! Of the ~shire")
-```
-
-Returns match indices and match confidence range from 0 (less confident) to 1 (more confident):
-```coffeescript
-{ startIndex: 7, endIndex: 25, confidence: 0.95 }
 ```
