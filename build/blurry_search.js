@@ -5,6 +5,7 @@
   this.BlurrySearch = (function() {
     function BlurrySearch(text) {
       this.text = text;
+      this.tag = __bind(this.tag, this);
       this.search = __bind(this.search, this);
       if (!StringHelper.isString(this.text)) {
         throw new Error("Must specify text to search through");
@@ -48,6 +49,28 @@
         endIndex: endIndexFinal,
         similarity: StringHelper.similarity(text, str)
       };
+    };
+
+    BlurrySearch.prototype.tag = function(searchText, tagName, attributes) {
+      var endTag, key, result, startTag, textCopy, value;
+      if (attributes == null) {
+        attributes = {};
+      }
+      tagName = tagName.replace(/[<>]/g, "");
+      result = this.search(searchText);
+      textCopy = new String(this.text);
+      startTag = "<" + tagName;
+      for (key in attributes) {
+        value = attributes[key];
+        startTag += " " + key + "='" + value + "'";
+      }
+      startTag += ">";
+      endTag = "</" + tagName + ">";
+      if (result != null) {
+        return textCopy.substring(0, result.startIndex) + startTag + textCopy.substring(result.startIndex, result.endIndex + 1) + endTag + textCopy.substring(result.endIndex + 1);
+      } else {
+        return textCopy;
+      }
     };
 
     return BlurrySearch;

@@ -40,6 +40,24 @@ class @BlurrySearch
       similarity: StringHelper.similarity(text, str)
     }
 
+  tag: (searchText, tagName, attributes = {}) =>
+    tagName = tagName.replace(/[<>]/g, "")
+    result = @search(searchText)
+    textCopy = new String(@text)
+    startTag = "<#{tagName}"
+    for key, value of attributes
+      startTag += " #{key}='#{value}'"
+    startTag += ">"
+    endTag = "</#{tagName}>"
+    if result?
+      textCopy.substring(0, result.startIndex) +
+        startTag +
+        textCopy.substring(result.startIndex, result.endIndex + 1) +
+        endTag +
+        textCopy.substring(result.endIndex + 1)
+    else
+      textCopy
+
 class StringHelper
   @isString: (obj) ->
     return false unless obj?

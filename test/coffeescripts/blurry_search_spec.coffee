@@ -57,6 +57,19 @@ describe "BlurrySearch", ->
         expect(result.startIndex).toEqual(6)
         expect(result.endIndex).toEqual(19)
 
+  describe "#tag", =>
+    context "with a match", =>
+      it "surrounds matching text with the specified HTML tag", =>
+        subject = new BlurrySearch("Harry Potter has no idea how famous he is.")
+        result = subject.tag("...NO IDEA?   how~Famous!!!", "em", {class: "highlight"})
+        expect(result).toEqual("Harry Potter has <em class='highlight'>no idea how famous</em> he is.")
+
+    context "without a match", =>
+      it "returns unmodified text", =>
+        subject = new BlurrySearch("Original text!!")
+        result = subject.tag("Nope", "em")
+        expect(result).toEqual("Original text!!")
+
 describe "StringHelper", ->
   beforeEach =>
     @subject = BlurrySearch.StringHelper
