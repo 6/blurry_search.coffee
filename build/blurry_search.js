@@ -108,10 +108,6 @@
       return 1 - (this.characterDifferences(stringA, stringB).length / (stringA + stringB).length);
     };
 
-    StringHelper.percentDifference = function(stringA, stringB) {
-      return (1 - this.similarity(stringA, stringB)) * 100;
-    };
-
     StringHelper.removeNonWordCharacters = function(str) {
       var newStr, removed;
       removed = [];

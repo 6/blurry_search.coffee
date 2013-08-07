@@ -79,9 +79,6 @@ class StringHelper
   @similarity: (stringA, stringB) ->
     1 - (@characterDifferences(stringA, stringB).length / (stringA + stringB).length)
 
-  @percentDifference: (stringA, stringB) ->
-    (1 - @similarity(stringA, stringB)) * 100
-
   @removeNonWordCharacters: (str) ->
     # Keep track of removed substrings and their start indices
     removed = []

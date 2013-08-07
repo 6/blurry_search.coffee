@@ -95,10 +95,10 @@ describe "StringHelper", ->
       diffs2 = @subject.characterDifferences("112344","1112")
       expect(diffs2.sort()).toEqual(["1", "3", "4", "4"])
 
-  describe ".percentDifference", =>
-    it "returns the percent difference between to strings", =>
-      percent = @subject.percentDifference("hello world", "hello hoo world!")
-      expect(Math.round(percent)).toEqual(19)
+  describe ".similarity", =>
+    it "returns a range from 0 to 1 indicating similarity between to strings", =>
+      similarity = @subject.similarity("hello world", "hello hoo world!")
+      expect(Math.round(similarity * 100)).toEqual(81)
 
   describe ".removeNonWordCharacters", =>
     it "removes punctuation and spaces", =>
