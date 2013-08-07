@@ -78,8 +78,7 @@
         newStr = newStr.substring(0, relativeIndex) + newStr.substring(relativeIndex + 1);
         return removed.push({
           char: match[0],
-          relative: relativeIndex,
-          original: match.index
+          index: match.index
         });
       });
       return {

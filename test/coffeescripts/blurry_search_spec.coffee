@@ -86,9 +86,9 @@ describe "StringHelper", ->
     it "returns a 'stack' of removed characters and their indices", =>
       result = @subject.removeNonWordCharacters("What's up?")
       expect(result.removed).toEqual([
-        {char: "'", relative: 4, original: 4}
-        {char: ' ', relative: 5, original: 6}
-        {char: '?', relative: 7, original: 9}
+        {char: "'", index: 4}
+        {char: ' ', index: 6}
+        {char: '?', index: 9}
       ])
 
     it "works with unicode characters", =>
