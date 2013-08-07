@@ -47,7 +47,7 @@
       return {
         startIndex: startIndexFinal,
         endIndex: endIndexFinal,
-        similarity: StringHelper.similarity(text, str)
+        confidence: StringHelper.similarity(text.substring(startIndexFinal, endIndexFinal + 1), str)
       };
     };
 

@@ -28,7 +28,7 @@ b = new BlurrySearch("A meek hobbit of The Shire and eight companions set out")
 b.search("Hobbit! Of the ~shire")
 ```
 
-Returns:
+Returns match indices and match confidence range from 0 (less confident) to 1 (more confident):
 ```coffeescript
-{ startIndex: 7, endIndex: 25 }
+{ startIndex: 7, endIndex: 25, confidence: 0.95 }
 ```
