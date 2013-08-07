@@ -6,7 +6,7 @@ b = new BlurrySearch("Harry Potter has no idea how famous he is.")
 b.tag("...NO IDEA? how~Famous!!", "em", {class: 'highlight'})
 ```
 
-This returns:
+Returns:
 ```coffeescript
 "Harry Potter has <em class='highlight'>no idea how famous</em> he is."
 ```
@@ -17,7 +17,18 @@ b = new BlurrySearch("★あっ！〜モぉ、どうしよう？（笑）")
 b.tag("ど〜うしよう‥", "span")
 ```
 
-This returns:
+Returns:
 ```coffeescript
 "★あっ！〜モぉ、<span>どうしよう</span>？（笑）"
+```
+---
+Access to matching indices in original text:
+```coffeescript
+b = new BlurrySearch("A meek hobbit of The Shire and eight companions set out on a journey")
+b.search("Hobbit! Of the ~shire")
+```
+
+Returns:
+```coffeescript
+{ startIndex: 7, endIndex: 25 }
 ```
