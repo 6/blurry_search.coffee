@@ -69,7 +69,23 @@
     };
 
     StringHelper.removeNonWordCharacters = function(str) {
-      return XRegExp.replace(str, XRegExp('[^0-9\\p{L}\\p{N}]'), "", 'all');
+      var newStr, removed;
+      removed = [];
+      newStr = new String(str);
+      XRegExp.forEach(str, XRegExp('[^0-9\\p{L}\\p{N}]'), function(match, i) {
+        var relativeIndex;
+        relativeIndex = match.index - i;
+        newStr = newStr.substring(0, relativeIndex) + newStr.substring(relativeIndex + 1);
+        return removed.push({
+          char: match[0],
+          relative: relativeIndex,
+          original: match.index
+        });
+      });
+      return {
+        str: newStr,
+        removed: removed
+      };
     };
 
     return StringHelper;

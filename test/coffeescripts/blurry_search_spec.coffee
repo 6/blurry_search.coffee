@@ -81,8 +81,16 @@ describe "StringHelper", ->
   describe ".removeNonWordCharacters", =>
     it "removes punctuation and spaces", =>
       result = @subject.removeNonWordCharacters("yo! What's UP?? 1234")
-      expect(result).toEqual("yoWhatsUP1234")
+      expect(result.str).toEqual("yoWhatsUP1234")
+
+    it "returns a 'stack' of removed characters and their indices", =>
+      result = @subject.removeNonWordCharacters("What's up?")
+      expect(result.removed).toEqual([
+        {char: "'", relative: 4, original: 4}
+        {char: ' ', relative: 5, original: 6}
+        {char: '?', relative: 7, original: 9}
+      ])
 
     it "works with unicode characters", =>
       result = @subject.removeNonWordCharacters("★あっ！〜モぉ、どうしよう？（笑）１２３")
-      expect(result).toEqual("あっモぉどうしよう笑１２３")
+      expect(result.str).toEqual("あっモぉどうしよう笑１２３")

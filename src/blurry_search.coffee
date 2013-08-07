@@ -47,6 +47,13 @@ class StringHelper
     (1 - @similarity(stringA, stringB)) * 100
 
   @removeNonWordCharacters: (str) ->
-    XRegExp.replace(str, XRegExp('[^0-9\\p{L}\\p{N}]'), "", 'all')
+    # Stack for keeping track of removed substrings and their start indices
+    removed = []
+    newStr = new String(str)
+    XRegExp.forEach str, XRegExp('[^0-9\\p{L}\\p{N}]'), (match, i) ->
+      relativeIndex = match.index - i
+      newStr = newStr.substring(0, relativeIndex) + newStr.substring(relativeIndex + 1)
+      removed.push({char: match[0], relative: relativeIndex, original: match.index})
+    {str: newStr, removed: removed}
 
 @BlurrySearch.StringHelper = StringHelper
