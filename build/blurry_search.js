@@ -2,6 +2,10 @@
   var StringHelper,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
+  if (this.exports == null) {
+    this.exports = {};
+  }
+
   this.BlurrySearch = (function() {
     function BlurrySearch(text) {
       this.text = text;
@@ -17,8 +21,8 @@
       if (!StringHelper.isString(str)) {
         throw new Error("Must specify search string");
       }
-      text = new String(this.text).toLocaleLowerCase();
-      str = str.toLocaleLowerCase();
+      text = StringHelper.normalize(this.text);
+      str = StringHelper.normalize(str);
       textResult = StringHelper.removeNonWordCharacters(text);
       strResult = StringHelper.removeNonWordCharacters(str);
       startIndex = textResult.str.indexOf(strResult.str);
@@ -85,6 +89,11 @@
         return false;
       }
       return typeof obj === "string" || (typeof obj === "object" && obj.constructor === String);
+    };
+
+    StringHelper.normalize = function(str) {
+      str = exports.remove(new String(str));
+      return str.toLocaleLowerCase();
     };
 
     StringHelper.characterDifferences = function(stringA, stringB) {

@@ -15,6 +15,13 @@ describe "StringHelper", ->
       expect(@subject.isString("ok")).toBe(true)
       expect(@subject.isString(new String("ok"))).toBe(true)
 
+  describe ".normalize", =>
+    it "converts to locale lowercase", =>
+      expect(@subject.normalize("TesT")).toEqual("test")
+
+    it "removes diacritics", =>
+      expect(@subject.normalize("ảèⓘǿÛ")).toEqual("aeiou")
+
   describe ".characterDifferences", =>
     it "returns an array of non-unique differences between two strings", =>
       diffs = @subject.characterDifferences("hello world", "hello hoo world!")

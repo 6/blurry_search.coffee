@@ -1,3 +1,5 @@
+@exports ?= {}
+
 class @BlurrySearch
   constructor: (@text) ->
     throw new Error("Must specify text to search through") unless StringHelper.isString(@text)
@@ -11,8 +13,8 @@ class @BlurrySearch
   #    similarity: float between 0 and 1 indicating how similar match is (closer to 1 is more similar)
   search: (str) =>
     throw new Error("Must specify search string") unless StringHelper.isString(str)
-    text = new String(@text).toLocaleLowerCase()
-    str = str.toLocaleLowerCase()
+    text = StringHelper.normalize(@text)
+    str = StringHelper.normalize(str)
 
     textResult = StringHelper.removeNonWordCharacters(text)
     strResult = StringHelper.removeNonWordCharacters(str)
@@ -62,6 +64,10 @@ class StringHelper
   @isString: (obj) ->
     return false unless obj?
     typeof obj == "string" || (typeof obj == "object" && obj.constructor == String)
+
+  @normalize: (str) ->
+    str = exports.remove(new String(str))
+    str.toLocaleLowerCase()
 
   @characterDifferences: (stringA, stringB) ->
     diffs = []
