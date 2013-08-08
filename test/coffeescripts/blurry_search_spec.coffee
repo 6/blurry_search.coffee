@@ -57,6 +57,14 @@ describe "BlurrySearch", ->
         expect(result.startIndex).toEqual(6)
         expect(result.endIndex).toEqual(19)
 
+    context "with diacritics", =>
+      iit "produces a match", =>
+        subject = new BlurrySearch("the ⓘnternảtḯonǎlḭzatiǿn of baseball")
+        result = subject.search("IлｔèｒｎåｔïｏｎɑｌíƶａｔïꝊԉ")
+        expect(result).toBeTruthy()
+        expect(result.startIndex).toEqual(4)
+        expect(result.endIndex).toEqual(23)
+
   describe "#tag", =>
     context "with a match", =>
       it "surrounds matching text with the specified HTML tag", =>
