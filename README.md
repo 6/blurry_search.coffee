@@ -32,3 +32,14 @@ Returns:
 ```coffeescript
 "★あっ！〜モぉ、<span>どうしよう</span>？（笑）"
 ```
+---
+Works with diacritics:
+```coffeescript
+b = new BlurrySearch("the ⓘnternảtḯonǎlḭzatiǿn of baseball")
+b.tag("IлｔèｒｎåｔïｏｎɑｌíƶａｔïꝊԉ", "span")
+```
+
+Returns:
+```coffeescript
+"the <span>ⓘnternảtḯonǎlḭzatiǿn</span> of baseball"
+```
