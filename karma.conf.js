@@ -12,6 +12,7 @@ files = [
   JASMINE_ADAPTER,
   'node_modules/xregexp/xregexp-all.js',
   'build/blurry_search.js',
+  'node_modules/diacritics/index.js',
   'test/vendor/**/*.js',
   'test/javascripts/support/**/*.js',
   'test/javascripts/shared_examples/*.js',

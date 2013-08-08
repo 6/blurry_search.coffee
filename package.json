@@ -9,7 +9,8 @@
     "url": "https://github.com/6/blurry_search.coffee.git"
   },
   "dependencies": {
-    "xregexp": "~2.0.0"
+    "xregexp": "~2.0.0",
+    "diacritics": "0.1.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
