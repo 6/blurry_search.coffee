@@ -12,7 +12,7 @@ Use `search` to get matching indices in original text:
 ```coffeescript
 b = new BlurrySearch("A meek hobbit of The Shire and eight companions set out")
 b.search("Hobbit! Of the ~shire")
-# Returns match indices and match confidence range from 0 (less confident) to 1 (more confident):
+# Returns match indices and match confidence range from 0 (less confident) to 1:
 { startIndex: 7, endIndex: 25, confidence: 0.95 }
 ```
 ---
