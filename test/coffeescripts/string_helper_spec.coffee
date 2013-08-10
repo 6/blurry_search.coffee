@@ -16,8 +16,11 @@ describe "StringHelper", ->
       expect(@subject.isString(new String("ok"))).toBe(true)
 
   describe ".normalize", =>
-    it "converts to locale lowercase", =>
+    it "converts ASCII to lowercase", =>
       expect(@subject.normalize("TesT")).toEqual("test")
+
+    it "converts to locale lowercase", =>
+      expect(@subject.normalize("İ")).toEqual("i")
 
     it "removes diacritics", =>
       expect(@subject.normalize("ảèⓘǿÛ")).toEqual("aeiou")
