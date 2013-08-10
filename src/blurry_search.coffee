@@ -48,7 +48,7 @@ class @BlurrySearch
     if result?
       textToSurround = textCopy.substring(result.startIndex, result.endIndex + 1)
       textCopy.substring(0, result.startIndex) +
-        formatString.replace("<%= text %>", textToSurround) +
+        formatString.replace("<%= match %>", textToSurround) +
         textCopy.substring(result.endIndex + 1)
     else
       textCopy

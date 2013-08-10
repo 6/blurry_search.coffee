@@ -69,11 +69,11 @@ describe "BlurrySearch", ->
     context "with a match", =>
       it "surrounds matching text using the given format string", =>
         subject = new BlurrySearch("Harry Potter has no idea how famous he is.")
-        result = subject.formatMatch("...NO IDEA?   how~Famous!!!", "<em class='highlight'><%= text %></em>")
+        result = subject.formatMatch("...NO IDEA?   how~Famous!!!", "<em class='highlight'><%= match %></em>")
         expect(result).toEqual("Harry Potter has <em class='highlight'>no idea how famous</em> he is.")
 
     context "without a match", =>
       it "returns unmodified text", =>
         subject = new BlurrySearch("Original text!!")
-        result = subject.formatMatch("Nope", "<em><%= text %></em>")
+        result = subject.formatMatch("Nope", "<em><%= match %></em>")
         expect(result).toEqual("Original text!!")

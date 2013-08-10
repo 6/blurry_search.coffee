@@ -3,7 +3,7 @@
 Example usage:
 ```coffeescript
 b = new BlurrySearch("Harry Potter has no idea how famous he is.")
-b.formatMatch("...NO IDEA? how~Famous!!", "<em><%= text %></em>")
+b.formatMatch("...NO IDEA? how~Famous!!", "<em><%= match %></em>")
 # Returns:
 "Harry Potter has <em>no idea how famous</em> he is."
 ```
@@ -19,7 +19,7 @@ b.search("Hobbit! Of the ~shire")
 Works with unicode:
 ```coffeescript
 b = new BlurrySearch("★あっ！〜モぉ、どうしよう？（笑）")
-b.formatMatch("ど〜うしよう‥", "match found -> <%= text %> <-")
+b.formatMatch("ど〜うしよう‥", "match found -> <%= match %> <-")
 # Returns:
 "★あっ！〜モぉ、match found -> どうしよう <-？（笑）"
 ```
@@ -27,7 +27,7 @@ b.formatMatch("ど〜うしよう‥", "match found -> <%= text %> <-")
 Works with diacritics:
 ```coffeescript
 b = new BlurrySearch("the ⓘnternảtḯonǎlḭzatiǿn of baseball")
-b.formatMatch("IлｔèｒｎåｔïｏｎɑｌíƶａｔïꝊԉ", "<span><%= text %></span>")
+b.formatMatch("IлｔèｒｎåｔïｏｎɑｌíƶａｔïꝊԉ", "<span><%= match %></span>")
 # Returns:
 "the <span>ⓘnternảtḯonǎlḭzatiǿn</span> of baseball"
 ```
