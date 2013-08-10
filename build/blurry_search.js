@@ -9,7 +9,7 @@
   this.BlurrySearch = (function() {
     function BlurrySearch(text) {
       this.text = text;
-      this.tag = __bind(this.tag, this);
+      this.formatMatch = __bind(this.formatMatch, this);
       this.search = __bind(this.search, this);
       if (!StringHelper.isString(this.text)) {
         throw new Error("Must specify text to search through");
@@ -55,23 +55,13 @@
       };
     };
 
-    BlurrySearch.prototype.tag = function(searchText, tagName, attributes) {
-      var endTag, key, result, startTag, textCopy, value;
-      if (attributes == null) {
-        attributes = {};
-      }
-      tagName = tagName.replace(/[<>]/g, "");
+    BlurrySearch.prototype.formatMatch = function(searchText, formatString) {
+      var result, textCopy, textToSurround;
       result = this.search(searchText);
       textCopy = new String(this.text);
-      startTag = "<" + tagName;
-      for (key in attributes) {
-        value = attributes[key];
-        startTag += " " + key + "='" + value + "'";
-      }
-      startTag += ">";
-      endTag = "</" + tagName + ">";
       if (result != null) {
-        return textCopy.substring(0, result.startIndex) + startTag + textCopy.substring(result.startIndex, result.endIndex + 1) + endTag + textCopy.substring(result.endIndex + 1);
+        textToSurround = textCopy.substring(result.startIndex, result.endIndex + 1);
+        return textCopy.substring(0, result.startIndex) + formatString.replace("<%= text %>", textToSurround) + textCopy.substring(result.endIndex + 1);
       } else {
         return textCopy;
       }

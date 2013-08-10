@@ -3,9 +3,9 @@
 Example usage:
 ```coffeescript
 b = new BlurrySearch("Harry Potter has no idea how famous he is.")
-b.tag("...NO IDEA? how~Famous!!", "em", {class: 'highlight'})
+b.formatMatch("...NO IDEA? how~Famous!!", "<em><%= text %></em>")
 # Returns:
-"Harry Potter has <em class='highlight'>no idea how famous</em> he is."
+"Harry Potter has <em>no idea how famous</em> he is."
 ```
 ---
 Use `search` to get matching indices in original text:
@@ -19,15 +19,15 @@ b.search("Hobbit! Of the ~shire")
 Works with unicode:
 ```coffeescript
 b = new BlurrySearch("★あっ！〜モぉ、どうしよう？（笑）")
-b.tag("ど〜うしよう‥", "span")
+b.formatMatch("ど〜うしよう‥", "match found -> <%= text %> <-")
 # Returns:
-"★あっ！〜モぉ、<span>どうしよう</span>？（笑）"
+"★あっ！〜モぉ、match found -> どうしよう <-？（笑）"
 ```
 ---
 Works with diacritics:
 ```coffeescript
 b = new BlurrySearch("the ⓘnternảtḯonǎlḭzatiǿn of baseball")
-b.tag("IлｔèｒｎåｔïｏｎɑｌíƶａｔïꝊԉ", "span")
+b.formatMatch("IлｔèｒｎåｔïｏｎɑｌíƶａｔïꝊԉ", "<span><%= text %></span>")
 # Returns:
 "the <span>ⓘnternảtḯonǎlḭzatiǿn</span> of baseball"
 ```

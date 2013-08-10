@@ -42,20 +42,13 @@ class @BlurrySearch
       confidence: StringHelper.similarity(text.substring(startIndexFinal, endIndexFinal + 1), str)
     }
 
-  tag: (searchText, tagName, attributes = {}) =>
-    tagName = tagName.replace(/[<>]/g, "")
+  formatMatch: (searchText, formatString) =>
     result = @search(searchText)
     textCopy = new String(@text)
-    startTag = "<#{tagName}"
-    for key, value of attributes
-      startTag += " #{key}='#{value}'"
-    startTag += ">"
-    endTag = "</#{tagName}>"
     if result?
+      textToSurround = textCopy.substring(result.startIndex, result.endIndex + 1)
       textCopy.substring(0, result.startIndex) +
-        startTag +
-        textCopy.substring(result.startIndex, result.endIndex + 1) +
-        endTag +
+        formatString.replace("<%= text %>", textToSurround) +
         textCopy.substring(result.endIndex + 1)
     else
       textCopy
