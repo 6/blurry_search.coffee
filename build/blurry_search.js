@@ -61,7 +61,7 @@
       textCopy = new String(this.text);
       if (result != null) {
         textToSurround = textCopy.substring(result.startIndex, result.endIndex + 1);
-        return textCopy.substring(0, result.startIndex) + formatString.replace("<%= match %>", textToSurround) + textCopy.substring(result.endIndex + 1);
+        return textCopy.substring(0, result.startIndex) + formatString.replace(/<%=\s*?match\s*?%>/, textToSurround) + textCopy.substring(result.endIndex + 1);
       } else {
         return textCopy;
       }

@@ -72,6 +72,11 @@ describe "BlurrySearch", ->
         result = subject.formatMatch("...NO IDEA?   how~Famous!!!", "<em class='highlight'><%= match %></em>")
         expect(result).toEqual("Harry Potter has <em class='highlight'>no idea how famous</em> he is.")
 
+      it "works when the format string uses variable spacing", =>
+        subject = new BlurrySearch("A meek hobbit of The Shire")
+        result = subject.formatMatch("Hobbit_OfThe", "<h1><%=match  %></h1>")
+        expect(result).toEqual('A meek <h1>hobbit of The</h1> Shire')
+
     context "without a match", =>
       it "returns unmodified text", =>
         subject = new BlurrySearch("Original text!!")
